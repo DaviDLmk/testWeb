@@ -1,0 +1,16 @@
+<div class="form-buttons">
+  <button class="button button-primary" (click)="getInfo()">Récupérer les informations</button>
+</div>
+<br>
+<ng-container *ngIf="info$ | async as data; else loadingOrError">
+  <pre><code>{{data.user|json}}</code></pre>
+</ng-container>
+<ng-template #loadingOrError>
+  <ng-container *ngIf="error">
+    <div class="col-12 text-center">
+      <div class="alert alert-danger" *ngIf="error">
+        Erreur lors de la récupération des informations
+      </div>
+    </div>
+  </ng-container>
+</ng-template>

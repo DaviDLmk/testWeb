@@ -1,0 +1,37 @@
+<header>
+  Rattrapage Litzler David
+</header>
+
+
+<br>
+<form [formGroup]="authForm">
+  <fieldset>
+    <legend>Login</legend>
+    <div class="form-field">
+      <label>Login : </label>
+      <input name="login" formControlName="login">
+    </div>
+    <div class="form-field">
+      <label>Password : </label>
+      <input name="password" formControlName="password" type="password">
+    </div>
+  </fieldset>
+  <br>
+  <div class="form-buttons">
+    <button class="button button-primary" (click)="authentication()">S'authentifier</button>
+  </div>
+</form>
+<br>
+
+<ng-container *ngIf="login$ | async as data; else loadingOrError">
+  <app-user-infos></app-user-infos>
+</ng-container>
+<ng-template #loadingOrError>
+  <ng-container *ngIf="error">
+    <div class="col-12 text-center">
+      <div class="alert alert-danger" *ngIf="error">
+        Connexion impossible. Vérifiez la saisie.
+      </div>
+    </div>
+  </ng-container>
+</ng-template>
